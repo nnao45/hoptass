@@ -2,20 +2,32 @@ package main
 
 import (
 	"bufio"
+	cryptorand "crypto/rand"
+	"encoding/binary"
 	"fmt"
 	"log"
 	mrand "math/rand"
 	"os"
 	"strings"
-	"time"
+
+	"github.com/mattn/go-colorable"
 )
 
 func main() {
-	fmt.Printf("\nResult: %s\n", NewHoptass())
+	stdout := colorable.NewColorableStdout()
+	data := "\r\nResult: \x1b[31m" + NewHoptass() + "\x1b[0m"
+	fmt.Fprintln(stdout, data)
 }
 
 func diceRoll() int {
-	mrand.Seed(time.Now().UnixNano())
+	//mrand.Seed(time.Now().UnixNano())
+
+	var seed int64
+	err := binary.Read(cryptorand.Reader, binary.LittleEndian, &seed)
+	if err != nil {
+		panic(err)
+	}
+	mrand.Seed(seed)
 	return mrand.Intn(5)
 }
 
@@ -27,6 +39,7 @@ func NewHoptass() string {
 		panic(err)
 	}
 	org = strings.Trim(org, "\n")
+	org = strings.Trim(org, "\r")
 	return hoptChanger(org)
 }
 
