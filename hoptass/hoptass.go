@@ -1,9 +1,11 @@
 package hoptass
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	mrand "math/rand"
+	"os"
 	"strings"
 	"time"
 )
@@ -13,9 +15,16 @@ func diceRoll() int {
 	return mrand.Intn(5)
 }
 
-func NewHoptass(org string) string {
+func NewHoptass() string {
 	str := make(map[string]string)
 	var ful string
+
+	preorg := bufio.NewReader(os.Stdin)
+	fmt.Print("Type to change str to passphrase: ")
+	org, err := predorg.ReadString('\n')
+	if err != nil {
+		panic(err)
+	}
 	for _, nex := range org {
 		s_nex := string(nex)
 		s_nex = strings.ToLower(s_nex)
