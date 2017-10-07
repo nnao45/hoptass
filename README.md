@@ -21,4 +21,9 @@ C:\Users\n4sek\Desktop\hoptass>hoptass.exe
 Type to change str to passphrase: araisan
 
 Result: @rAIS@|'|
+
+C:\Users\n4sek\Desktop\hoptass>hoptass.exe
+Type to change str to passphrase: araisanmajitenshi
+
+Result: aR@I,/o.Nnx2ajiT.=|'|/'H:
 ```
