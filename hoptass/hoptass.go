@@ -14,17 +14,20 @@ func diceRoll() int {
 	mrand.Seed(time.Now().UnixNano())
 	return mrand.Intn(5)
 }
-
 func NewHoptass() string {
-	str := make(map[string]string)
-	var ful string
-
 	preorg := bufio.NewReader(os.Stdin)
 	fmt.Print("Type to change str to passphrase: ")
 	org, err := preorg.ReadString('\n')
 	if err != nil {
 		panic(err)
 	}
+	return hoptChanger(org)
+}
+
+func hoptChanger(org string) string {
+	str := make(map[string]string)
+	var ful string
+
 	for _, nex := range org {
 		s_nex := string(nex)
 		s_nex = strings.ToLower(s_nex)

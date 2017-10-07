@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(NewHoptass((""))
+	fmt.Println(hoptass.NewHoptass())
 }
