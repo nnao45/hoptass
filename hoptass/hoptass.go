@@ -1,38 +1,24 @@
-package hoppass
+package hoptass
 
 import (
-	"log"
-	//    "io"
 	"fmt"
+	"log"
 	mrand "math/rand"
+	"strings"
 	"time"
-	//    "crypto/rand"
-	//    "regexp"
 )
-
-var StrOrg = string("abcdefghijklmnopqrstuvwxyz0123456789")
 
 func diceRoll() int {
 	mrand.Seed(time.Now().UnixNano())
 	return mrand.Intn(5)
 }
 
-func newRndStr(org string) string {
+func NewHoptass(org string) string {
 	str := make(map[string]string)
 	var ful string
-	var flag int
 	for _, nex := range org {
 		s_nex := string(nex)
-
-		for _, ck := range StrOrg {
-			s := string(ck)
-			if s_nex == s {
-				flag++
-			}
-		}
-		if flag == 0 {
-			log.Fatal("bad format.")
-		}
+		s_nex = strings.ToLower(s_nex)
 
 		str["a_1"] = `a`
 		str["a_2"] = `A`
@@ -126,8 +112,8 @@ func newRndStr(org string) string {
 
 		str["s_1"] = `s`
 		str["s_2"] = `S`
-		str["s_3"] = `_/'`
-		str["s_4"] = `r2`
+		str["s_3"] = `/'`
+		str["s_4"] = `,/`
 
 		str["t_1"] = `t`
 		str["t_2"] = `T`
@@ -220,17 +206,17 @@ func newRndStr(org string) string {
 		} else if diceRoll() == 0 {
 			dice = 4
 		} else if diceRoll()%2 == 0 {
-			dice = 3
-		} else {
 			dice = 2
+		} else {
+			dice = 3
 		}
 		str_nex := fmt.Sprintf("%v", s_nex) + "_" + fmt.Sprintf("%v", dice)
-		fmt.Println(str_nex)
-		ful = ful + str[str_nex]
+		//fmt.Println(str_nex)
+		sne := str[str_nex]
+		if sne == "" {
+			log.Fatal("bad format\nYou must use, abcdefghijklmnopqrstuvwxyz0123456789")
+		}
+		ful = ful + sne
 	}
 	return ful
-}
-
-func main() {
-	fmt.Println(newRndStr("abcde"))
 }
