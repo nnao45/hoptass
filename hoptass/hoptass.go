@@ -21,6 +21,7 @@ func NewHoptass() string {
 	if err != nil {
 		panic(err)
 	}
+	org = strings.Trim(org, "\n")
 	return hoptChanger(org)
 }
 
