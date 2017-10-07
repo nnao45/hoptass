@@ -21,7 +21,7 @@ func NewHoptass() string {
 
 	preorg := bufio.NewReader(os.Stdin)
 	fmt.Print("Type to change str to passphrase: ")
-	org, err := predorg.ReadString('\n')
+	org, err := preorg.ReadString('\n')
 	if err != nil {
 		panic(err)
 	}
