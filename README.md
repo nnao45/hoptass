@@ -1,5 +1,5 @@
 # hoptass
-Option Human Readable Strong Passphrase Generator int the multi platform.
+Option Human Readable Strong Passphrase Generator in the multi platform.
 # Demo
 ```bash
 >hoptass.exe
